@@ -1,0 +1,49 @@
+prdus2mesacs01
+prdus2mesacs02
+prdus2meseig01
+prdus2meseig02
+
+ /u01/SosAssetReplicationCN/logs/wrapper.log, AcsIntegration.log                *:
+:*   /u01/SosAutoSegmentation/logs/wrapper.log, TreatIntegration.log                *:
+:*   /u01/SosCQA/logs/wrapper.log, MESEventPublisher2.log                           *:
+:*   /u01/SosPre_IPL_TFU/logs/wrapper.log, AcsIntegration.log                       *:
+:*   /u01/SosTreatFileUploadCN/logs/wrapper.log, AcsIntegration.log                 *:
+:*   /u01/SosTPS_IPLEvent/logs/wrapper.log, TreatIntegration.log  
+
+  GNU nano 1.3.12                      File: ask.sh
+
+#!/bin/bash
+
+#!/bin/bash
+
+    # Check each ShopOps server
+    for sos in SosAssetReplicationCN SosAutoSegmentation SosCQA SosPre_IPL_TFU SosTreatFileUploadCN SosTPS_IPLEvent
+    do
+        if ps aux | grep ${sos} | wc -l > 0; then
+                        echo `date` ${sos} is running with PID
+						pgrep -f ${sos}
+                        else
+                        echo `date` ${sos} is NOT RUNNING
+
+        fi
+    done
+
+#!/bin/bash
+
+    # Check each ShopOps server
+    for i in SosScanSegRe* SosTPCOMPUTE_AutoDDTRe* SosTPFORGE_CCEventPublisher TPFORGE_ClinCheckEvent TPFORGE_ClinCheckEvent_CN SosTPFORGE_ReClinCheck_CN
+    do
+        if ps aux | grep ${i} | wc -l > 0; then
+                        echo `date` ${i} is running with PID
+						pgrep -f ${i}
+						Hour of last entry  in log:
+						tail -100 A*.log || tail -100 M*.log cut -d\ -f1,2
+
+                        else
+                        echo `date` ${i} is NOT RUNNING
+
+        fi
+    done
+	
+	
+	tail -100 A*.log || tail -100 M*.log
